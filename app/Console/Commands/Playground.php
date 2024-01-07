@@ -30,7 +30,9 @@ class Playground extends Command
         $service = new CoinMarketCapService();
 //        $result = $service->api->get('https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/map');
 
-        $result = $service->cryptocurrencies()->map();
+//        $result = $service->cryptocurrencies()->map();
+
+        $result = $service->cryptocurrencies()->listingsLatest();
 
         dd($result);
 

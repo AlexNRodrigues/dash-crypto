@@ -4,18 +4,6 @@ namespace App\Services\CoinMarketCap\Entities;
 
 class Cryptocurrency
 {
-    /**
-     * "id": 1,
-     * "rank": 1,
-     * "name": "Bitcoin",
-     * "symbol": "BTC",
-     * "slug": "bitcoin",
-     * "is_active": 1,
-     * "first_historical_data": "2013-04-28T18:47:21.000Z",
-     * "last_historical_data": "2020-05-05T20:44:01.000Z",
-     * "platform": null
-     */
-
     public int $id;
     public int $rank;
     public string $name;

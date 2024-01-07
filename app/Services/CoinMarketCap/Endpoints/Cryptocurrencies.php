@@ -2,19 +2,13 @@
 
 namespace App\Services\CoinMarketCap\Endpoints;
 
-use App\Services\CoinMarketCap\CoinMarketCapService;
 use App\Services\CoinMarketCap\Entities\Cryptocurrency;
+use App\Services\CoinMarketCap\Entities\Crypto;
 use Illuminate\Support\Collection;
 
-class Cryptocurrencies
+class Cryptocurrencies extends BaseEndpoint
 {
-    protected CoinMarketCapService $service;
-    public function __construct()
-    {
-        $this->service = new CoinMarketCapService();
-    }
-
-    public function map()
+    public function map(): Collection
     {
         return $this->transform(
             $this->service->api->get('/map')->json('data'),
@@ -22,8 +16,12 @@ class Cryptocurrencies
         );
     }
 
-    private function transform(mixed $json, string $entity): Collection
+    public  function listingsLatest(): Collection
     {
-        return collect($json)->map(fn ($sport) => new $entity($sport));
+        return $this->transform(
+            $this->service->api->get('/listings/latest?limit=12')->json('data'),
+            Crypto::class
+        );
     }
+
 }
